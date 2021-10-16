@@ -10,9 +10,13 @@ Visual_Effects = ["Aura", "Blackflame", "Blood", "Brew", "Campfire", "Death", "D
                   "Force", "Heart", "Heartbroken", "Magic", "Poison", "Poof", "Resurrection", "Skulls",
                   "Spiralflame", "Wildfire"]
 
+Hair_Color = ["gray", "black", "brown", "red", "blonde"]
+
 Hairstyles_All_Body_Types = ["Long", "Spiky", "Short", "Short_Beard", "Short_Full"]
 
 BodyTypes = ["A", "B", "C", "D", "E", "F", "G", "H"]
+
+Expressions = ["neutral", "happy", "sad", "angry", "disgusted", "scared", "surprised", "asleep"]
 
 Hairsyles_ACEG = ["Ponytail", "Straight"]
 
@@ -20,6 +24,8 @@ Hairsyles_BDFH = ["Mage", "Mage_Beard", "Mage_Full", "Musketeer", "Musketeer_Bea
 
 Outfits_All_Body_Types = ["Bandit", "Beggar", "HeavyArmour", "LightArmour", "Merchant", "Naked",
                           "Noble", "Peasant", "Priest"]
+
+Eyecolor = ["white", "black", "blue", "red", "brown", "green"]
 
 Outfits_ACEG = ["Queen", "Witch"]
 

@@ -10,13 +10,9 @@ Visual_Effects = ["Aura", "Blackflame", "Blood", "Brew", "Campfire", "Death", "D
                   "Force", "Heart", "Heartbroken", "Magic", "Poison", "Poof", "Resurrection", "Skulls",
                   "Spiralflame", "Wildfire"]
 
-Hair_Color = ["gray", "black", "brown", "red", "blonde"]
-
 Hairstyles_All_Body_Types = ["Long", "Spiky", "Short", "Short_Beard", "Short_Full"]
 
 BodyTypes = ["A", "B", "C", "D", "E", "F", "G", "H"]
-
-Expressions = ["neutral", "happy", "sad", "angry", "disgusted", "scared", "surprised", "asleep"]
 
 Hairsyles_ACEG = ["Ponytail", "Straight"]
 
@@ -24,8 +20,6 @@ Hairsyles_BDFH = ["Mage", "Mage_Beard", "Mage_Full", "Musketeer", "Musketeer_Bea
 
 Outfits_All_Body_Types = ["Bandit", "Beggar", "HeavyArmour", "LightArmour", "Merchant", "Naked",
                           "Noble", "Peasant", "Priest"]
-
-Eyecolor = ["white", "black", "blue", "red", "brown", "green"]
 
 Outfits_ACEG = ["Queen", "Witch"]
 
@@ -48,4 +42,17 @@ SoundEffects_Music = ["Danger1", "Danger2", "Danger3", "Dramatic", "Explorer", "
 
 SoundEffects_UI = ["Button", "Error", "Flute1", "Flute2", "Menu"]
 
-ForestPath = Location.Location({1: "EastEnd", 2: "Well", 3: "Plant", 4: "DirtPile", 6: "WestEnd"}, {}, {5: "PathBlock"})
+ForestPath = Location.Location("ForestPath", ["EastEnd", "Well", "Plant", "DirtPile", "PathBlock", "WestEnd"],
+                               [None, None, None, None, None, None],
+                               [None, None, None, None, "PathBlock", None],
+                               ["EastEnd", "WestEnd"])
+
+Farm = Location.Location("Farm", ["Exit", "Haypiles", None, "Anvil", "Door", "Well"],
+                         [None, None, None, ["Surface"], ["Can Open and Close"], None],
+                         [None, "Haypiles", None, None, None, None],
+                         ["Exit", "Door"])
+
+SpookyPath = Location.Location("SpookyPath", ["WestEnd", "DirtPile", "Plant", "Well", "PathBlock", "EastEnd"],
+                               [None, None, None, None, None, None],
+                               [None, None, None, None, "PathBlock", None],
+                               ["WestEnd", "EastEnd"])

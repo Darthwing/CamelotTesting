@@ -3,9 +3,12 @@ from tkinter import *
 from tkinter import ttk
 
 # sets the root for the testing window
+import Location
+
 root = Tk()
 root.title('Camelot Testing Environment')
 
+Hair_Color = ["gray", "black", "brown", "red", "blonde"]
 cottage_locations = ["Door", "Bed", "Chair", "Table", "Shelf", "Bookshelf", "Chest"]
 
 
@@ -14,41 +17,51 @@ class TestingGui:
         self.focusCharacter = "BobB"
         self.characters = ['BobA', 'BobB', 'BobC', 'BobD', 'BobE', 'BobF', 'BobG', 'BobH']
         self.locationName = "BobsHouse"
-        self.characterList = list()
-        self.characterList.append("BobB")
-        self.trashList = list()
-        self.trash = "Trashcan"
-        self.currentFocusMode = ""
         self.waitTime = .5
         self.isInputEnabled = False
-
-
-        self.partialTestingButton = Button(master, text = "Partial Testing", command=lambda: self.createPartialTestingWindow(root))
-
         self.myButton = Button(master, text="Run Command", command=self.get_input)
         self.clearButton = Button(master, text="Clear", command=self.clear_output)
         self.commandBox = Text(master, height=5, width=40)
         self.outputBox = Text(master, height=12, width=40)
-
-        self.defaultButton = Button(master, text="Default", command=lambda :self.default(self.focusCharacter))
-
+        self.clothingBoxButton = Button(master, text="Clothing", command=self.clothing)
+        self.eyeColorButton = Button(master, text="Eye Color", command=self.eye_color)
+        self.hairStylesButton = Button(master, text="Hair Styles", command=self.hair_style)
+        self.defaultButton = Button(master, text="Default", command=self.default)
+        self.hair_colorButton = Button(master, text="Hair Color", command=self.hair_color)
+        self.skin_colorButton = Button(master, text="Skin Color", command=self.skin_color)
         self.items_button = Button(master, text="Items", command=self.items)
         self.visual_effects_button = Button(master, text="Visual Effects", command=self.visual_effects)
         self.run_aroundButton = Button(master, text="Run Around", command=self.run_around)
         self.all_clothingButton = Button(master, text="All Clothing", command=self.all_clothing)
         self.inputButton = Button(master, text="Allow input", command=self.inputEnable)
-        self.forest_button = Button(master, text="Forest Path Test", command=self.test_forestpath)
-        self.forest_manual_button = Button(master, text="Manual Forest Path Test", command=self.test_forestpath_manual)
+        self.openManualWindowButton = Button(master, text="Open Manual", command=self.createManualWindow)
+        self.forest_button = Button(master, text="Forest Path Test",
+                                    command=lambda: self.test_Place(CamelotLists.ForestPath))
+        self.farm_button = Button(master, text="Farm Test",
+                                  command=lambda: self.test_Place(CamelotLists.Farm))
+        self.spooky_path_button = Button(master, text="Spooky Path Test",
+                                         command=lambda: self.test_Place(CamelotLists.SpookyPath))
 
         self.commandBox.pack()
         self.myButton.pack()
         self.outputBox.pack()
         self.clearButton.pack()
+        self.clothingBoxButton.pack()
+        self.eyeColorButton.pack()
+        self.hairStylesButton.pack()
+        self.hair_colorButton.pack()
+        self.skin_colorButton.pack()
+        self.items_button.pack()
+        self.visual_effects_button.pack()
+        self.run_aroundButton.pack()
+        self.all_clothingButton.pack()
         self.inputButton.pack()
         self.defaultButton.pack()
-        #self.forest_button.pack()
-        #self.forest_manual_button.pack()
-        self.partialTestingButton.pack()
+        self.openManualWindowButton.pack()
+        self.forest_button.pack()
+        self.farm_button.pack()
+        self.spooky_path_button.pack()
+        self.defaultButton.pack()
 
         self.initialize()
 
@@ -65,8 +78,8 @@ class TestingGui:
 
         return new_command
 
-    def createManualWindow(self, master):
-        manualwindow = Toplevel(master)
+    def createManualWindow(self):
+        manualwindow = Toplevel(root)
         manualwindow.title("Manual Experience Manager")
         manualwindow.geometry("300x300")
 
@@ -74,62 +87,10 @@ class TestingGui:
                                 command=lambda: self.generateClothingWindow(manualwindow))
         hairWindow = Button(manualwindow, text="HairStyle", command=lambda: self.generateHairStyleWindow(manualwindow))
 
-        expressionWindow = Button(manualwindow, text = "Expressions", command =lambda :self.generateExpressionWindow(manualwindow))
-
-        characterWindow = Button(manualwindow, text="Character Creator", command = lambda :self.generateCharacterWindow(manualwindow))
-
         clothingWindow.pack()
         hairWindow.pack()
-        expressionWindow.pack()
-        characterWindow.pack()
 
         manualwindow.mainloop()
-
-    def createPartialTestingWindow(self, master):
-        partialTestingWindow  = Toplevel(master)
-        partialTestingWindow.title("Partial Testing Experience Manager")
-        partialTestingWindow.geometry("400x800")
-
-        Button(partialTestingWindow, text = "Selection Testing", command= lambda :self.createSelectingTestingWindow(partialTestingWindow)).pack()
-        Button(partialTestingWindow, text="Auto Testing",
-               command=lambda: self.createautoTestWindow(partialTestingWindow)).pack()
-
-
-        partialTestingWindow.mainloop()
-
-    def createautoCharacterWindow(self,master):
-        autoCharacterWindow = Toplevel(master)
-        autoCharacterWindow.title("Partial Testing Experience Manager")
-        autoCharacterWindow.geometry("400x800")
-
-        Button(autoCharacterWindow, text="Clothing", command=self.clothing).pack()
-        Button(autoCharacterWindow, text="Eye Color", command=self.eye_color).pack()
-        Button(autoCharacterWindow, text="Hair Styles", command=self.hair_style).pack()
-        Button(autoCharacterWindow, text="Hair Color", command=self.hair_color).pack()
-        Button(autoCharacterWindow, text="Skin Color", command=self.skin_color).pack()
-
-        autoCharacterWindow.mainloop()
-        
-    def createautoTestWindow(self,master):
-        autoTestWindow = Toplevel(master)
-        autoTestWindow.title("Full Partial Experience Manager")
-        autoTestWindow.geometry("400x800")
-
-        Button(autoTestWindow, text = "Auto Character", command=lambda :self.createautoCharacterWindow(autoTestWindow)).pack()
-
-        autoTestWindow.mainloop()
-
-    def createSelectingTestingWindow(self,master):
-        selectionTestingWindow = Toplevel(master)
-        selectionTestingWindow.title("Full Partial Experience Manager")
-        selectionTestingWindow.geometry("400x800")
-
-        manualTestButton = Button(selectionTestingWindow, text = "Manual Test", command=lambda :self.createManualWindow(selectionTestingWindow))
-        autoTestButton = Button(selectionTestingWindow, text = "Auto Test", command = lambda :self.createautoTestWindow(selectionTestingWindow))
-        manualTestButton.pack()
-        autoTestButton.pack()
-
-        selectionTestingWindow.mainloop()
 
     def generateHairStyleWindow(self, master):
         hairStyleWindow = Toplevel(master)
@@ -147,63 +108,10 @@ class TestingGui:
                 ttk.Button(hairStyleWindow, text=k, command=lambda k=k: self.manualhairstyle(k)).pack()
 
         Label(hairStyleWindow, text="Hair Color:").pack()
-        for i in CamelotLists.Hair_Color:
+        for i in Hair_Color:
             ttk.Button(hairStyleWindow, text=i, command=lambda i=i: self.manualhaircolor(i)).pack()
 
         hairStyleWindow.mainloop()
-
-    def generateCharacterWindow(self,master):
-        characterWindow = Toplevel(master)
-        characterWindow.title("Manual Character Experience Manager")
-        characterWindow.geometry("400x500")
-
-        for i in CamelotLists.BodyTypes:
-            ttk.Button(characterWindow, text=i, command=lambda i=i:self.createCharacter("Bob"+i,i)).pack()
-
-        characterWindow.mainloop()
-
-    def yeet(self,name):
-        for i in self.characterList:
-            if i not in self.trashList and name != i:
-                self.trashList.append(i)
-                command_list = ['SetPosition', i, self.trash]
-                self.action(self.create_command(command_list))
-
-
-
-    def createCharacter(self, name, body):
-        #If character already exists
-        if name not in self.characterList:
-            command_list = ['CreateCharacter', name, body]
-            self.action(self.create_command(command_list))
-            self.characterList.append(name)
-            command_list = ['SetPosition', name, self.locationName]
-            self.action(self.create_command(command_list))
-            command_list = ['SetCameraFocus', name]
-            self.action(self.create_command(command_list))
-            self.focusCharacter = name
-            self.yeet(name)
-        else:
-            self.default(name)
-            self.trashList.remove(name)
-            command_list = ['SetCameraFocus', name]
-            self.action(self.create_command(command_list))
-            self.focusCharacter = name
-            self.yeet(name)
-
-
-
-
-    def generateExpressionWindow(self,master):
-        expressionWindow = Toplevel(master)
-        expressionWindow.title("Manual Expression Experience Manager")
-        expressionWindow.geometry("400x500")
-
-        for i in CamelotLists.Expressions:
-            ttk.Button(expressionWindow, text=i, command=lambda i=i: self.manualexpression(i)).pack()
-
-        expressionWindow.mainloop()
-
 
     def generateClothingWindow(self, master):
         clothingWindow = Toplevel(master)
@@ -221,7 +129,6 @@ class TestingGui:
 
         clothingWindow.mainloop()
 
-
     def manualclothing(self, clothingname):
         command_list = ['SetClothing', self.focusCharacter, clothingname]
         self.action(self.create_command(command_list))
@@ -234,15 +141,11 @@ class TestingGui:
         command_list = ['SetHairColor', self.focusCharacter, haircolor]
         self.action(self.create_command(command_list))
 
-    def manualexpression(self,expression):
-        command_list = ['SetExpression', self.focusCharacter, expression]
-        self.action(self.create_command(command_list))
-
     def all_clothing(self):
         oldcharacter = self.focusCharacter
         # self.action('SetCameraMode(track)')
         for i in self.characters:
-            self.characterList.append(i)
+
             command_list = ['CreateCharacter', i, i[-1]]
             self.action(self.create_command(command_list))
             command_list = ['SetPosition', i, self.locationName]
@@ -293,29 +196,27 @@ class TestingGui:
             self.action('Wait(.5)')
 
     def eye_color(self):
-        for i in CamelotLists.Eyecolor:
+        for i in CamelotLists.Eye_Color:
             command_list = ['SetEyeColor', self.focusCharacter, i]
             self.action(self.create_command(command_list))
             self.action('Wait(.5)')
 
-    def default(self, name):
-        command_list = ['SetCameraMode', focus]
+    def default(self):
+        command_list = ['SetPosition', self.focusCharacter, self.locationName]
         self.action(self.create_command(command_list))
-        command_list = ['SetPosition', name, self.locationName]
+        command_list = ['SetClothing', self.focusCharacter]
         self.action(self.create_command(command_list))
-        command_list = ['SetClothing', name]
+        command_list = ['SetHairStyle', self.focusCharacter]
         self.action(self.create_command(command_list))
-        command_list = ['SetHairStyle', name]
+        command_list = ['SetEyeColor', self.focusCharacter]
         self.action(self.create_command(command_list))
-        command_list = ['SetEyeColor', name]
+        command_list = ['SetHairColor', self.focusCharacter]
         self.action(self.create_command(command_list))
-        command_list = ['SetHairColor', name]
-        self.action(self.create_command(command_list))
-        command_list = ['SetSkinColor', name, str(0)]
+        command_list = ['SetSkinColor', self.focusCharacter, str(0)]
         self.action(self.create_command(command_list))
 
     def hair_color(self):
-        for i in CamelotLists.Hair_Color:
+        for i in Hair_Color:
             command_list = ['SetHairColor', self.focusCharacter, i]
             self.action(self.create_command(command_list))
             self.action('Wait(.5)')
@@ -356,53 +257,44 @@ class TestingGui:
             self.action(self.create_command(command_list))
             self.action('Wait(1)')
 
-    def test_forestpath(self):
+    def test_Place(self, place: Location.Location):
         self.action("SetCameraMode(track)")
-        self.currentFocusMode = "track"
-        self.action("CreatePlace(Forest, ForestPath)")
-        command_list = ['SetPosition', self.focusCharacter, "Forest"]
+        self.action(self.create_command(["CreatePlace", place.title, place.title]))
+        command_list = ['SetPosition', self.focusCharacter, place.title]
         self.action(self.create_command(command_list))
         command_list = ['SetClothing', self.focusCharacter, "Bandit"]
         self.action(self.create_command(command_list))
-        command_list = ['SetHairStyle', "A"]
-        self.action(self.create_command(command_list))
-        command_list = ['SetEyeColor', self.focusCharacter]
-        self.action(self.create_command(command_list))
-        command_list = ['SetHairColor', self.focusCharacter]
-        self.action(self.create_command(command_list))
-        command_list = ['SetSkinColor', self.focusCharacter, str(0)]
-        self.action(self.create_command(command_list))
-        for key in CamelotLists.ForestPath.names:
-            print("place: " + str(CamelotLists.ForestPath.names[key]))
-            command_list = ['WalkTo', self.focusCharacter, "Forest" + "." + CamelotLists.ForestPath.names[key]]
+        for location in place.locs:
+            print("place: " + str(place.locs[0]))
+            if location[0] is not None:
+                command_list = ['WalkTo', self.focusCharacter, place.title + "." + location[0]]
+                self.action(self.create_command(command_list))
+                self.action('Wait(2)')
+            if location[1] is not None:
+                for attr in location[1]:
+                    if attr == "Surface":
+                        command_list = ['CreateItem', CamelotLists.Items[1], CamelotLists.Items[1]]
+                        self.action(self.create_command(command_list))
+                        command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
+                                        place.title + "." + location[0]]
+                        self.action(self.create_command(command_list))
+                    if attr == "Can Open and Close":
+                        command_list = ['OpenFurniture', self.focusCharacter, place.title + "." + location[0]]
+                        self.action(self.create_command(command_list))
+                        command_list = ['CloseFurniture', self.focusCharacter, place.title + "." + location[0]]
+                        self.action(self.create_command(command_list))
+        for portal in place.exits:
+            command_list = ['WalkTo', self.focusCharacter, place.title + "." + portal]
             self.action(self.create_command(command_list))
-            self.action('Wait(2)')
-        self.action(self.create_command(["Exit", self.focusCharacter, "Forest.WestEnd"]))
-        self.action(self.create_command(["Enter", self.focusCharacter, "Forest.EastEnd"]))
-        self.action("Wait(1)")
-        self.action(self.create_command(["Exit", self.focusCharacter, "Forest.EastEnd"]))
-        self.action(self.create_command(["Enter", self.focusCharacter, "Forest.WestEnd"]))
-
-    def test_forestpath_manual(self):
-        self.action("SetCameraMode(track)")
-        self.currentFocusMode = "track"
-        self.action("CreatePlace(Forest, ForestPath)")
-        command_list = ['SetPosition', self.focusCharacter, "Forest"]
-        self.action(self.create_command(command_list))
-        command_list = ['SetClothing', self.focusCharacter, "Bandit"]
-        self.action(self.create_command(command_list))
-        command_list = ['SetHairColor', self.focusCharacter]
-        self.action(self.create_command(command_list))
-        self.action("EnableInput()")
+            self.action(self.create_command(["Exit", self.focusCharacter, place.title + "." + portal]))
+            self.action(self.create_command(["Enter", self.focusCharacter, place.title + "." + portal]))
 
     def initialize(self):
         self.action('CreatePlace(BobsHouse, Cottage)')
-        self.action('CreatePlace(Trashcan, Cottage)')
         self.action('CreateCharacter(BobB, B)')
         self.action('SetPosition(BobB, BobsHouse.Door)')
         self.action('SetCameraFocus(BobB)')
         self.action('SetCameraMode(focus)')
-        self.currentFocusMode = "focus"
         self.action('ShowMenu()')
         self.action('HideMenu()')
 

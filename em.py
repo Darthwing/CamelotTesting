@@ -39,6 +39,8 @@ class TestingGui:
         self.run_aroundButton = Button(master, text="Run Around", command=self.run_around)
         self.all_clothingButton = Button(master, text="All Clothing", command=self.all_clothing)
         self.inputButton = Button(master, text="Allow input", command=self.inputEnable)
+        self.char2charInteractionButton = Button(master, text="Character Interaction",
+                                                 command=self.test_CharacterActions)
         self.forest_button = Button(master, text="Forest Path Test",
                                     command=lambda: self.test_Place(CamelotLists.ForestPath))
         self.farm_button = Button(master, text="Farm Test",
@@ -52,6 +54,7 @@ class TestingGui:
         self.clearButton.pack()
         self.inputButton.pack()
         self.defaultButton.pack()
+        self.char2charInteractionButton.pack()
         self.forest_button.pack()
         self.farm_button.pack()
         self.spooky_path_button.pack()
@@ -362,36 +365,90 @@ class TestingGui:
             self.action('Wait(1)')
 
     def test_Place(self, place: Location.Location):
-        self.action("SetCameraMode(track)")
-        self.action(self.create_command(["CreatePlace", place.title, place.title]))
-        command_list = ['SetPosition', self.focusCharacter, place.title]
-        self.action(self.create_command(command_list))
-        command_list = ['SetClothing', self.focusCharacter, "Bandit"]
-        self.action(self.create_command(command_list))
-        for location in place.locs:
-            print("place: " + str(place.locs[0]))
-            if location[0] is not None:
-                command_list = ['WalkTo', self.focusCharacter, place.title + "." + location[0]]
-                self.action(self.create_command(command_list))
-                self.action('Wait(2)')
-            if location[1] is not None:
-                for attr in location[1]:
-                    if attr == "Surface":
-                        command_list = ['CreateItem', CamelotLists.Items[1], CamelotLists.Items[1]]
-                        self.action(self.create_command(command_list))
-                        command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
-                                        place.title + "." + location[0]]
-                        self.action(self.create_command(command_list))
-                    if attr == "Can Open and Close":
-                        command_list = ['OpenFurniture', self.focusCharacter, place.title + "." + location[0]]
-                        self.action(self.create_command(command_list))
-                        command_list = ['CloseFurniture', self.focusCharacter, place.title + "." + location[0]]
-                        self.action(self.create_command(command_list))
-        for portal in place.exits:
-            command_list = ['WalkTo', self.focusCharacter, place.title + "." + portal]
+        for i in ("track", "follow", "focus"):
+            self.action("SetCameraMode(" + i + ")")
+            self.action(self.create_command(["CreatePlace", place.title, place.title]))
+            command_list = ['SetPosition', self.focusCharacter, place.title]
             self.action(self.create_command(command_list))
-            self.action(self.create_command(["Exit", self.focusCharacter, place.title + "." + portal]))
-            self.action(self.create_command(["Enter", self.focusCharacter, place.title + "." + portal]))
+            command_list = ['SetClothing', self.focusCharacter, "Bandit"]
+            self.action(self.create_command(command_list))
+            for location in place.locs:
+                print("place: " + str(place.locs[0]))
+                if location[0] is not None:
+                    command_list = ['WalkTo', self.focusCharacter, place.title + "." + location[0]]
+                    self.action(self.create_command(command_list))
+                    self.action('Wait(2)')
+                if location[1] is not None:
+                    for attr in location[1]:
+                        if attr == "Surface":
+                            command_list = ['CreateItem', CamelotLists.Items[1], CamelotLists.Items[1]]
+                            self.action(self.create_command(command_list))
+                            command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
+                                            place.title + "." + location[0]]
+                            self.action(self.create_command(command_list))
+                        if attr == "Can Open and Close":
+                            command_list = ['OpenFurniture', self.focusCharacter, place.title + "." + location[0]]
+                            self.action(self.create_command(command_list))
+                            command_list = ['CloseFurniture', self.focusCharacter, place.title + "." + location[0]]
+                            self.action(self.create_command(command_list))
+            for portal in place.exits:
+                command_list = ['WalkTo', self.focusCharacter, place.title + "." + portal]
+                self.action(self.create_command(command_list))
+                self.action(self.create_command(["Exit", self.focusCharacter, place.title + "." + portal]))
+                self.action(self.create_command(["Enter", self.focusCharacter, place.title + "." + portal]))
+
+    def test_CharacterActions(self):
+        self.action("CreatePlace(CharacterInteraction, Farm")
+        self.action("CreateCharacter(TestDummy, A)")
+        for char in ("TestDummy", "BobB"):
+            command_list = ['SetCameraFocus', char]
+            self.action(self.create_command(command_list))
+            self.action("SetCameraMode(Follow)")
+            command_list = ['SetPosition', self.focusCharacter, "CharacterInteraction"]
+            self.action(self.create_command(command_list))
+            self.action("SetPosition(TestDummy, CharacterInteraction.Exit)")
+            command_list = ['SetClothing', self.focusCharacter, "Peasant"]
+            self.action(self.create_command(command_list))
+            self.action("SetClothing(TestDummy, Peasant)")
+
+            self.action("CreateItem(DummySword, Sword)")
+            command_list = ["Draw", self.focusCharacter, "DummySword"]
+            self.action(self.create_command(command_list))
+            command_list = ["Attack", self.focusCharacter, "TestDummy", "false"]
+            self.action(self.create_command(command_list))
+            command_list = ["Attack", self.focusCharacter, "TestDummy", "true"]
+            self.action(self.create_command(command_list))
+            command_list = ["Pocket", self.focusCharacter, "DummySword"]
+            self.action(self.create_command(command_list))
+
+            self.walkAway()
+            command_list = ["Cast", self.focusCharacter, "TestDummy"]
+            self.action(self.create_command(command_list))
+            command_list = ["DanceTogether", self.focusCharacter, "TestDummy"]
+            self.action(self.create_command(command_list))
+
+            self.walkAway()
+            command_list = ["Face", self.focusCharacter, "TestDummy"]
+            self.action(self.create_command(command_list))
+            self.action("CreateItem(DummyPotion, BluePotion)")
+            command_list = ["Give", self.focusCharacter, "DummyPotion", "TestDummy"]
+            self.action(self.create_command(command_list))
+            command_list = ["LookAt", self.focusCharacter, "TestDummy"]
+            self.action(self.create_command(command_list))
+            command_list = ["LookAt", self.focusCharacter]
+            self.action(self.create_command(command_list))
+
+            self.walkAway()
+            command_list = ["Put", "TestDummy", "DummyPotion", self.focusCharacter]
+            self.action(self.create_command(command_list))
+
+            self.walkAway()
+            command_list = ["Take", "TestDummy", "DummyPotion", self.focusCharacter]
+            self.action(self.create_command(command_list))
+
+    def walkAway(self):
+        command_list = ['MoveAway', self.focusCharacter]
+        self.action(self.create_command(command_list))
 
     def initialize(self):
         self.action('CreatePlace(BobsHouse, Cottage)')

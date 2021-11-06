@@ -1,0 +1,11 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Gate,Yes,No,No,No,Yes,
+Fountain,No,No,No,No,No,
+Barrel,No,Yes,No,No,No,
+SmallStall,No,Yes,No,No,No,
+BigStall,No,Yes,No,No,No,Left|Right
+Exit,No,No,No,No,Yes,
+Horse,No,No,No,No,No,
+Target,No,No,No,No,No,
+RightBench,No,No,Yes,No,No,Left|Right
+LeftBench,No,No,Yes,No,No,Left|Right

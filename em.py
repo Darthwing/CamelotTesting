@@ -61,6 +61,10 @@ class TestingGui:
                                      command=lambda: self.test_Place(CamelotLists.Hallway))
         self.bridge_button = Button(master, text="Bridge Test",
                                     command=lambda: self.test_Place(CamelotLists.Bridge))
+        self.castle_crossroad_button = Button(master, text="Castle Crossroads Test",
+                                              command=lambda: self.test_Place(CamelotLists.CastleCrossroads))
+        self.courtyard_button = Button(master, text="Courtyard Test",
+                                       command=lambda: self.test_Place(CamelotLists.Courtyard))
 
         self.commandBox.pack()
         self.myButton.pack()
@@ -76,6 +80,8 @@ class TestingGui:
         self.castle_bedroom_button.pack()
         self.hallway_button.pack()
         self.bridge_button.pack()
+        self.castle_crossroad_button.pack()
+        self.courtyard_button.pack()
         self.partialTestingButton.pack()
         self.initialize()
 

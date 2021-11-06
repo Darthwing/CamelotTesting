@@ -1,0 +1,8 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+WestEnd,No,No,No,No,Yes,
+Right,No,No,No,No,No,
+Left,No,No,No,No,No,
+EastEnd,No,No,No,No,Yes,
+Gate,Yes,No,No,No,Yes,
+WestSign,No,No,No,Yes,No,
+EastSign,No,No,No,Yes,No,

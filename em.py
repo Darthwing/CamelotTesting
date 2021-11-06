@@ -1,9 +1,14 @@
+import csv
+import pickle
+
 import CamelotLists
 from tkinter import *
 from tkinter import ttk
+import ctypes
 
 # sets the root for the testing window
-import Location
+from Location import Location
+from PlaceReader import parseData
 
 root = Tk()
 root.title('Camelot Testing Environment')
@@ -48,6 +53,13 @@ class TestingGui:
         self.spooky_path_button = Button(master, text="Spooky Path Test",
                                          command=lambda: self.test_Place(CamelotLists.SpookyPath))
 
+        self.camp_button = Button(master, text="Camp Test",
+                                  command=lambda: self.test_Place(CamelotLists.Camp))
+        self.castle_bedroom_button = Button(master, text="Castle Bedroom Test",
+                                            command=lambda: self.test_Place(CamelotLists.CastleBedroom))
+        self.hallway_button = Button(master, text="Hallway Test",
+                                     command=lambda: self.test_Place(CamelotLists.Hallway))
+
         self.commandBox.pack()
         self.myButton.pack()
         self.outputBox.pack()
@@ -58,6 +70,9 @@ class TestingGui:
         self.forest_button.pack()
         self.farm_button.pack()
         self.spooky_path_button.pack()
+        self.camp_button.pack()
+        self.castle_bedroom_button.pack()
+        self.hallway_button.pack()
         self.partialTestingButton.pack()
 
         self.initialize()
@@ -364,7 +379,7 @@ class TestingGui:
             self.action(self.create_command(command_list))
             self.action('Wait(1)')
 
-    def test_Place(self, place: Location.Location):
+    def test_Place(self, place : Location):
         for i in ("track", "follow", "focus"):
             self.action("SetCameraMode(" + i + ")")
             self.action(self.create_command(["CreatePlace", place.title, place.title]))
@@ -378,24 +393,58 @@ class TestingGui:
                     command_list = ['WalkTo', self.focusCharacter, place.title + "." + location[0]]
                     self.action(self.create_command(command_list))
                     self.action('Wait(2)')
-                if location[1] is not None:
-                    for attr in location[1]:
-                        if attr == "Surface":
-                            command_list = ['CreateItem', CamelotLists.Items[1], CamelotLists.Items[1]]
-                            self.action(self.create_command(command_list))
-                            command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
-                                            place.title + "." + location[0]]
-                            self.action(self.create_command(command_list))
-                        if attr == "Can Open and Close":
-                            command_list = ['OpenFurniture', self.focusCharacter, place.title + "." + location[0]]
-                            self.action(self.create_command(command_list))
-                            command_list = ['CloseFurniture', self.focusCharacter, place.title + "." + location[0]]
-                            self.action(self.create_command(command_list))
+                    if location[1] is not None:
+                        for attr in location[1]:
+                            if attr == "Surface":
+                                command_list = ['CreateItem', CamelotLists.Items[1], CamelotLists.Items[1]]
+                                self.action(self.create_command(command_list))
+                                command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
+                                                place.title + "." + location[0]]
+                                self.action(self.create_command(command_list))
+                                command_list = ['Pickup', self.focusCharacter, CamelotLists.Items[1],
+                                                place.title + "." + location[0]]
+                                self.action(self.create_command(command_list))
+                                if location[2] is not None:
+                                    for pos in location[2]:
+                                        self.action(self.create_command(command_list))
+                                        command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
+                                                        place.title + "." + location[0] + "." + pos]
+                                        self.action(self.create_command(command_list))
+                                        command_list = ['Pickup', self.focusCharacter, CamelotLists.Items[1],
+                                                        place.title + "." + location[0] + "." + pos]
+                                        self.action(self.create_command(command_list))
+                            if attr == "Seat":
+                                command_list = ['Sit', self.focusCharacter, place.title + "." + location[0]]
+                                self.action(self.create_command(command_list))
+                                self.action("Wait(1)")
+                                command_list = ['WalkTo', self.focusCharacter, place.title + "." + location[0]]
+                                self.action(self.create_command(command_list))
+                                if location[0] == "Bed":
+                                    command_list = ['Sleep', self.focusCharacter, place.title + "." + location[0]]
+                                    self.action(self.create_command(command_list))
+                                    self.action("Wait(1)")
+                                    command_list = ['WalkTo', self.focusCharacter, place.title + "." + location[0]]
+                                    self.action(self.create_command(command_list))
+                                if location[2] is not None:
+                                    for pos in location[2]:
+                                        command_list = ['Sit', self.focusCharacter, place.title + "." + location[0]
+                                                        + "." + pos]
+                                        self.action(self.create_command(command_list))
+                                        self.action("Wait(1)")
+                                        command_list = ['WalkTo', self.focusCharacter, place.title + "." + location[0]]
+                                        self.action(self.create_command(command_list))
+
+                            if attr == "Can Open and Close":
+                                command_list = ['OpenFurniture', self.focusCharacter, place.title + "." + location[0]]
+                                self.action(self.create_command(command_list))
+                                command_list = ['CloseFurniture', self.focusCharacter, place.title + "." + location[0]]
+                                self.action(self.create_command(command_list))
+
             for portal in place.exits:
                 command_list = ['WalkTo', self.focusCharacter, place.title + "." + portal]
                 self.action(self.create_command(command_list))
-                self.action(self.create_command(["Exit", self.focusCharacter, place.title + "." + portal]))
-                self.action(self.create_command(["Enter", self.focusCharacter, place.title + "." + portal]))
+                self.action(self.create_command(["Exit", self.focusCharacter, place.title + "." + portal, "true"]))
+                self.action(self.create_command(["Enter", self.focusCharacter, place.title + "." + portal, "true"]))
 
     def test_CharacterActions(self):
         self.action("CreatePlace(CharacterInteraction, Farm")
@@ -469,11 +518,13 @@ class TestingGui:
                 if i == 'succeeded ' + command:
                     self.outputBox.insert(INSERT, i + '\n')
                     return True
-                elif i == 'failed ' + command:
+                elif i.startswith('failed'):
+                    ctypes.windll.user32.MessageBoxW(0, "failed" + str(command), "Fail Detected", 1)
                     self.outputBox.insert(INSERT, i + '\n')
                     return False
                 elif i.startswith('error'):
                     self.outputBox.insert(INSERT, i + '\n')
+                    ctypes.windll.user32.MessageBoxW(0, "error " + str(command), "Error Detected", 1)
                     return False
             else:
                 return True

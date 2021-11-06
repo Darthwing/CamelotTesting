@@ -20,15 +20,17 @@ def parseData(path, name):
                 rowSpecialAttrs.append(headers[2])
             if row[3].lower() == "yes":
                 rowSpecialAttrs.append(headers[3])
+            if row[4].lower() == "yes":
+                rowSpecialAttrs.append(headers[4])
             if not all(x is None for x in rowSpecialAttrs):
                 specialAttrs.append(rowSpecialAttrs)
             else:
                 specialAttrs.append(None)
 
-            if row[4].lower() == "yes":
+            if row[5].lower() == "yes":
                 portals.append(row[0])
 
-            if row[5] not in (None, ""):
+            if row[6] not in (None, ""):
                 positions.append(row[5].split('|'))
             else:
                 positions.append(None)

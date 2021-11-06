@@ -61,3 +61,5 @@ Camp = parseData("PlaceCSVs\\Camp.csv", "Camp")
 CastleBedroom = parseData("PlaceCSVs\\CastleBedroom.csv", "CastleBedroom")
 
 Hallway = parseData("PlaceCSVs\\Hallway.csv", "Hallway")
+
+Bridge = parseData("PlaceCSVs\\Bridge.csv", "Bridge")

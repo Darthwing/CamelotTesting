@@ -1,0 +1,13 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Exit,No,No,No,No,Yes,
+Plant,No,No,No,No,No,
+Barrel,No,Yes,No,No,No,
+Stall,No,Yes,No,No,No,
+Chest,Yes,No,No,No,No,
+LeftLog,No,No,Yes,No,No,
+Cauldron,No,No,No,No,No,
+Roast,No,No,No,No,No,
+Firepit,No,No,No,No,No,
+Log,No,No,Yes,No,No,
+RightLog,No,No,Yes,No,No,
+Horse,No,No,No,No,No,

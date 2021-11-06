@@ -1,0 +1,11 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Door,Yes,No,No,No,Yes,
+Chest,Yes,No,No,No,No,
+Couch,No,No,Yes,No,No,Left|Right
+Fireplace,No,No,No,No,No,
+Table,No,Yes,No,No,No,Left|Right|FrontLeft|BackLeft|FrontRight|BackRight
+RightChair,No,No,Yes,No,No,
+LeftChair,No,No,Yes,No,No,
+SmallTable,No,Yes,No,No,No,
+Bed,No,No,Yes,No,No,Left|Right
+Closet,No,No,No,No,No,

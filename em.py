@@ -59,6 +59,8 @@ class TestingGui:
                                             command=lambda: self.test_Place(CamelotLists.CastleBedroom))
         self.hallway_button = Button(master, text="Hallway Test",
                                      command=lambda: self.test_Place(CamelotLists.Hallway))
+        self.bridge_button = Button(master, text="Bridge Test",
+                                    command=lambda: self.test_Place(CamelotLists.Bridge))
 
         self.commandBox.pack()
         self.myButton.pack()
@@ -73,8 +75,8 @@ class TestingGui:
         self.camp_button.pack()
         self.castle_bedroom_button.pack()
         self.hallway_button.pack()
+        self.bridge_button.pack()
         self.partialTestingButton.pack()
-
         self.initialize()
 
     @staticmethod
@@ -379,7 +381,7 @@ class TestingGui:
             self.action(self.create_command(command_list))
             self.action('Wait(1)')
 
-    def test_Place(self, place : Location):
+    def test_Place(self, place: Location):
         for i in ("track", "follow", "focus"):
             self.action("SetCameraMode(" + i + ")")
             self.action(self.create_command(["CreatePlace", place.title, place.title]))

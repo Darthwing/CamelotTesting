@@ -1,0 +1,5 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Door,Yes,No,No,No,Yes,
+Center,No,No,No,No,No,
+BackDoor,Yes,No,No,No,Yes,
+Stairs,No,No,No,No,Yes,

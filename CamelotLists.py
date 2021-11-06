@@ -1,7 +1,7 @@
-import Location
-
+from Location import Location
+from PlaceReader import parseData
 Items = ["Apple", "Bag", "BlueBook", "BlueCloth", "BlueKey", "BluePotion", "Bottle", "Bread", "ChickenLeg",
-         "Coin", "Compass", "Cup", "EvilBook", "GoldBook", "GreenBook", "GreenKey", "GreenPotion", "Hammer",
+         "Coin", "Compass", "Cup", "EvilBook", "GoldCup", "GreenBook", "GreenKey", "GreenPotion", "Hammer",
          "Helmet", "InkandQuill", "JewelKey", "LitTorch", "Lock", "MagnifyingGlass", "OpenScroll", "PurpleBook",
          "PurpleCloth", "PurpleKey", "PurplePotion", "Rags", "RedBook", "RedCloth", "RedKey", "RedPotion",
          "Scroll", "Skull", "SpellBook", "Sword", "Torch"]
@@ -48,17 +48,16 @@ SoundEffects_Music = ["Danger1", "Danger2", "Danger3", "Dramatic", "Explorer", "
 
 SoundEffects_UI = ["Button", "Error", "Flute1", "Flute2", "Menu"]
 
-ForestPath = Location.Location("ForestPath", ["EastEnd", "Well", "Plant", "DirtPile", "PathBlock", "WestEnd"],
-                               [None, None, None, None, None, None],
-                               [None, None, None, None, "PathBlock", None],
-                               ["EastEnd", "WestEnd"])
+CharToCharActions = ["Attack", "Bash", "Cast", "DanceTogether", "Face", "Give", "LookAt", "Take"]
 
-Farm = Location.Location("Farm", ["Exit", "Haypiles", None, "Anvil", "Door", "Well"],
-                         [None, None, None, ["Surface"], ["Can Open and Close"], None],
-                         [None, "Haypiles", None, None, None, None],
-                         ["Exit", "Door"])
+ForestPath = parseData("PlaceCSVs\\ForestPath.csv", "ForestPath")
 
-SpookyPath = Location.Location("SpookyPath", ["WestEnd", "DirtPile", "Plant", "Well", "PathBlock", "EastEnd"],
-                               [None, None, None, None, None, None],
-                               [None, None, None, None, "PathBlock", None],
-                               ["WestEnd", "EastEnd"])
+Farm = parseData("PlaceCSVs\\Farm.csv", "Farm")
+
+SpookyPath = parseData("PlaceCSVs\\SpookyPath.csv", "SpookyPath")
+
+Camp = parseData("PlaceCSVs\\Camp.csv", "Camp")
+
+CastleBedroom = parseData("PlaceCSVs\\CastleBedroom.csv", "CastleBedroom")
+
+Hallway = parseData("PlaceCSVs\\Hallway.csv", "Hallway")

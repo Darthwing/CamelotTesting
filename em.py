@@ -330,6 +330,7 @@ class TestingGui:
             self.action('Wait(.5)')
 
     def default(self, name):
+        self.initialize()
         command_list = ['SetCameraMode', "focus"]
         self.action(self.create_command(command_list))
         command_list = ['SetPosition', name, self.locationName]
@@ -388,9 +389,11 @@ class TestingGui:
             self.action('Wait(1)')
 
     def test_Place(self, place: Location):
+        self.action(self.create_command(["CreatePlace", place.title, place.title]))
+        command_list = ['CreateItem', CamelotLists.Items[1], CamelotLists.Items[1]]
+        self.action(self.create_command(command_list))
         for i in ("track", "follow", "focus"):
             self.action("SetCameraMode(" + i + ")")
-            self.action(self.create_command(["CreatePlace", place.title, place.title]))
             command_list = ['SetPosition', self.focusCharacter, place.title]
             self.action(self.create_command(command_list))
             command_list = ['SetClothing', self.focusCharacter, "Bandit"]
@@ -404,8 +407,6 @@ class TestingGui:
                     if location[1] is not None:
                         for attr in location[1]:
                             if attr == "Surface":
-                                command_list = ['CreateItem', CamelotLists.Items[1], CamelotLists.Items[1]]
-                                self.action(self.create_command(command_list))
                                 command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
                                                 place.title + "." + location[0]]
                                 self.action(self.create_command(command_list))
@@ -523,7 +524,7 @@ class TestingGui:
         while True:
             i = input()
             if not i.startswith('succeeded Wait'):
-                if i == 'succeeded ' + command:
+                if i == 'succeeded ' + command or i.startswith("started Reset()"):
                     self.outputBox.insert(INSERT, i + '\n')
                     return True
                 elif i.startswith('failed'):

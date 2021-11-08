@@ -46,25 +46,41 @@ class TestingGui:
         self.inputButton = Button(master, text="Allow input", command=self.inputEnable)
         self.char2charInteractionButton = Button(master, text="Character Interaction",
                                                  command=self.test_CharacterActions)
-        self.forest_button = Button(master, text="Forest Path Test",
-                                    command=lambda: self.test_Place(CamelotLists.ForestPath))
-        self.farm_button = Button(master, text="Farm Test",
-                                  command=lambda: self.test_Place(CamelotLists.Farm))
-        self.spooky_path_button = Button(master, text="Spooky Path Test",
-                                         command=lambda: self.test_Place(CamelotLists.SpookyPath))
 
+        self.bridge_button = Button(master, text="Bridge Test",
+                                    command=lambda: self.test_Place(CamelotLists.Bridge))
         self.camp_button = Button(master, text="Camp Test",
                                   command=lambda: self.test_Place(CamelotLists.Camp))
         self.castle_bedroom_button = Button(master, text="Castle Bedroom Test",
                                             command=lambda: self.test_Place(CamelotLists.CastleBedroom))
-        self.hallway_button = Button(master, text="Hallway Test",
-                                     command=lambda: self.test_Place(CamelotLists.Hallway))
-        self.bridge_button = Button(master, text="Bridge Test",
-                                    command=lambda: self.test_Place(CamelotLists.Bridge))
         self.castle_crossroad_button = Button(master, text="Castle Crossroads Test",
                                               command=lambda: self.test_Place(CamelotLists.CastleCrossroads))
+        self.cottage_button = Button(master, text="Cottage Test",
+                                     command=lambda: self.test_Place(CamelotLists.Cottage))
         self.courtyard_button = Button(master, text="Courtyard Test",
                                        command=lambda: self.test_Place(CamelotLists.Courtyard))
+        self.diningRoom_button = Button(master, text="Dining Room Test",
+                                        command=lambda: self.test_Place(CamelotLists.DiningRoom))
+        self.dungeon_button = Button(master, text="Dungeon Test",
+                                     command=lambda: self.test_Place(CamelotLists.Dungeon))
+        self.farm_button = Button(master, text="Farm Test",
+                                  command=lambda: self.test_Place(CamelotLists.Farm))
+        self.forest_button = Button(master, text="Forest Path Test",
+                                    command=lambda: self.test_Place(CamelotLists.ForestPath))
+        self.hallway_button = Button(master, text="Hallway Test",
+                                     command=lambda: self.test_Place(CamelotLists.Hallway))
+        self.library_button = Button(master, text="Library Test",
+                                     command=lambda: self.test_Place(CamelotLists.Library))
+        self.port_button = Button(master, text="Port Test",
+                                  command=lambda: self.test_Place(CamelotLists.Port))
+        self.ruins_button = Button(master, text="Ruins Test",
+                                   command=lambda: self.test_Place(CamelotLists.Ruins))
+        self.spooky_path_button = Button(master, text="Spooky Path Test",
+                                         command=lambda: self.test_Place(CamelotLists.SpookyPath))
+        self.storage_button = Button(master, text="Storage Test",
+                                     command=lambda: self.test_Place(CamelotLists.Storage))
+        self.tavern_button = Button(master, text="Tavern Test",
+                                    command=lambda: self.test_Place(CamelotLists.Tavern))
 
         self.commandBox.pack()
         self.myButton.pack()
@@ -73,15 +89,24 @@ class TestingGui:
         self.inputButton.pack()
         self.defaultButton.pack()
         self.char2charInteractionButton.pack()
-        self.forest_button.pack()
-        self.farm_button.pack()
-        self.spooky_path_button.pack()
+
+        self.bridge_button.pack()
         self.camp_button.pack()
         self.castle_bedroom_button.pack()
-        self.hallway_button.pack()
-        self.bridge_button.pack()
         self.castle_crossroad_button.pack()
+        self.cottage_button.pack()
         self.courtyard_button.pack()
+        self.diningRoom_button.pack()
+        self.dungeon_button.pack()
+        self.farm_button.pack()
+        self.forest_button.pack()
+        self.hallway_button.pack()
+        self.library_button.pack()
+        self.port_button.pack()
+        self.ruins_button.pack()
+        self.spooky_path_button.pack()
+        self.storage_button.pack()
+        self.tavern_button.pack()
         self.partialTestingButton.pack()
         self.initialize()
 
@@ -410,16 +435,15 @@ class TestingGui:
                                 command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
                                                 place.title + "." + location[0]]
                                 self.action(self.create_command(command_list))
-                                command_list = ['Pickup', self.focusCharacter, CamelotLists.Items[1],
+                                command_list = ['Take', self.focusCharacter, CamelotLists.Items[1],
                                                 place.title + "." + location[0]]
                                 self.action(self.create_command(command_list))
                                 if location[2] is not None:
                                     for pos in location[2]:
-                                        self.action(self.create_command(command_list))
                                         command_list = ['Put', self.focusCharacter, CamelotLists.Items[1],
                                                         place.title + "." + location[0] + "." + pos]
                                         self.action(self.create_command(command_list))
-                                        command_list = ['Pickup', self.focusCharacter, CamelotLists.Items[1],
+                                        command_list = ['Take', self.focusCharacter, CamelotLists.Items[1],
                                                         place.title + "." + location[0] + "." + pos]
                                         self.action(self.create_command(command_list))
                             if attr == "Seat":
@@ -442,12 +466,18 @@ class TestingGui:
                                         self.action("Wait(1)")
                                         command_list = ['WalkTo', self.focusCharacter, place.title + "." + location[0]]
                                         self.action(self.create_command(command_list))
-
+                            if attr == "Furniture":
+                                command_list = ['Bash', self.focusCharacter, place.title + "." + location[0]]
+                                self.action(self.create_command(command_list))
                             if attr == "Can Open and Close":
                                 command_list = ['OpenFurniture', self.focusCharacter, place.title + "." + location[0]]
                                 self.action(self.create_command(command_list))
                                 command_list = ['CloseFurniture', self.focusCharacter, place.title + "." + location[0]]
                                 self.action(self.create_command(command_list))
+                                if location[0] not in place.exits:
+                                    command_list = ['OpenFurniture', self.focusCharacter,
+                                                    place.title + "." + location[0]]
+                                    self.action(self.create_command(command_list))
 
             for portal in place.exits:
                 command_list = ['WalkTo', self.focusCharacter, place.title + "." + portal]
@@ -528,10 +558,14 @@ class TestingGui:
                     self.outputBox.insert(INSERT, i + '\n')
                     return True
                 elif i.startswith('failed'):
-                    ctypes.windll.user32.MessageBoxW(0, "failed" + str(command), "Fail Detected", 1)
+                    ctypes.windll.user32.MessageBoxW(0, "failed " + str(command), "Fail Detected", 1)
                     self.outputBox.insert(INSERT, i + '\n')
                     return False
                 elif i.startswith('error'):
+                    self.outputBox.insert(INSERT, i + '\n')
+                    ctypes.windll.user32.MessageBoxW(0, "error " + str(command), "Error Detected", 1)
+                    return False
+                elif i.startswith('Exception '):
                     self.outputBox.insert(INSERT, i + '\n')
                     ctypes.windll.user32.MessageBoxW(0, "error " + str(command), "Error Detected", 1)
                     return False

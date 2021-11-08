@@ -1,0 +1,8 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Exit,No,No,No,No,Yes,
+Barrel,No,Yes,No,No,No,
+SmallStall,No,Yes,No,No,No,
+Barrel2,No,Yes,No,No,No,
+BigStall,No,Yes,No,No,No,Left|Right
+SmallShip,No,No,No,No,No,
+BigShip,No,No,No,No,No,

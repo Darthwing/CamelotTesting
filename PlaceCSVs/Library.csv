@@ -1,0 +1,14 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Door,Yes,No,No,No,Yes,
+Bookcase,No,No,No,No,No,
+Bookcase2,No,No,No,No,No,
+Bookcase3,No,No,No,No,No,
+Bookcase4,No,No,No,No,No,
+Table,No,Yes,No,No,No,
+Chair,No,No,Yes,No,No,
+AlchemistTable,No,Yes,No,No,No,Left|Right|Center
+Fireplace,No,No,No,No,No,
+Cauldron,No,No,No,No,No,
+Stand,No,No,No,No,No,
+SpellBook,No,No,No,No,No,
+Window,No,No,No,No,No,

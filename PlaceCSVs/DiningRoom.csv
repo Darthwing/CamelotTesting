@@ -1,0 +1,16 @@
+DiningRoom,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Door,Yes,No,No,No,Yes,
+BackDoor,Yes,No,No,No,Yes,
+Fireplace,No,No,No,No,No,
+FrontLeftChair,No,No,Yes,No,No,
+FrontRightChair,No,No,Yes,No,No,
+RightChair,No,No,Yes,No,No,
+BackRightChair,No,No,Yes,No,No,
+BackLeftChair,No,No,Yes,No,No,
+LeftChair,No,No,Yes,No,No,
+DiningTable,No,Yes,No,No,No,Left|Right|FrontLeft|BackLeft|FrontRight|BackRight
+Table,No,Yes,No,No,No,
+LeftWindow,No,No,No,No,No,
+Window,No,No,No,No,No,
+RightWindow,No,No,No,No,No,
+Shelf,No,Yes,No,No,No,Left|Right

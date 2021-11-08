@@ -1,0 +1,9 @@
+Cottage,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Door,Yes,No,No,No,Yes,
+Bed,No,No,Yes,No,No,
+Fireplace,No,No,No,No,No,
+Chair,No,No,Yes,No,No,
+Table,No,Yes,No,No,No,
+Shelf,No,Yes,No,No,No,Left|Right
+Bookshelf,No,Yes,No,No,No,Left|Right
+Chest,Yes,No,No,No,No,

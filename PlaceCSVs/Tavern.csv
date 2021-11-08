@@ -1,0 +1,14 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+Door,Yes,No,No,No,Yes,
+FrontLeftStool,No,No,Yes,No,No,
+FrontRightStool,No,No,Yes,No,No,
+BackLeftStool,No,No,Yes,No,No,
+BackRightStool,No,No,Yes,No,No,
+Table,No,Yes,No,No,No,Left|Right|FrontLeft|BackLeft|FrontRight|BackRight
+RoundTable,No,Yes,No,No,No,
+Chair,No,No,Yes,No,No,
+Fireplace,No,No,No,No,No,
+Bar,Yes,Yes,No,No,No,Behind|Left|Center|Right
+Barrel,No,Yes,No,No,No,
+Shelf,No,Yes,No,No,No,Left|Right
+BackDoor,Yes,No,No,No,Yes,

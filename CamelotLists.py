@@ -50,20 +50,38 @@ SoundEffects_UI = ["Button", "Error", "Flute1", "Flute2", "Menu"]
 
 CharToCharActions = ["Attack", "Bash", "Cast", "DanceTogether", "Face", "Give", "LookAt", "Take"]
 
-ForestPath = parseData("PlaceCSVs\\ForestPath.csv", "ForestPath")
-
-Farm = parseData("PlaceCSVs\\Farm.csv", "Farm")
-
-SpookyPath = parseData("PlaceCSVs\\SpookyPath.csv", "SpookyPath")
+Bridge = parseData("PlaceCSVs\\Bridge.csv", "Bridge")
 
 Camp = parseData("PlaceCSVs\\Camp.csv", "Camp")
 
 CastleBedroom = parseData("PlaceCSVs\\CastleBedroom.csv", "CastleBedroom")
 
-Hallway = parseData("PlaceCSVs\\Hallway.csv", "Hallway")
-
-Bridge = parseData("PlaceCSVs\\Bridge.csv", "Bridge")
-
 CastleCrossroads = parseData("PlaceCSVs\\CastleCrossroads.csv", "CastleCrossroads")
 
+Cottage = parseData("PlaceCSVs\\Cottage.csv", "Cottage")
+
 Courtyard = parseData("PlaceCSVs\\Courtyard.csv", "Courtyard")
+
+DiningRoom = parseData("PlaceCSVs\\DiningRoom.csv", "DiningRoom")
+
+Dungeon = parseData("PlaceCSVs\\Dungeon.csv", "Dungeon")
+
+Farm = parseData("PlaceCSVs\\Farm.csv", "Farm")
+
+ForestPath = parseData("PlaceCSVs\\ForestPath.csv", "ForestPath")
+
+Hallway = parseData("PlaceCSVs\\Hallway.csv", "Hallway")
+
+Library = parseData("PlaceCSVs\\Library.csv", "Library")
+
+Port = parseData("PlaceCSVs\\Port.csv", "Port")
+
+Ruins = parseData("PlaceCSVs\\Ruins.csv", "Ruins")
+
+SpookyPath = parseData("PlaceCSVs\\SpookyPath.csv", "SpookyPath")
+
+Storage = parseData("PlaceCSVs\\Storage.csv", "Storage")
+
+Tavern = parseData("PlaceCSVs\\Tavern.csv", "Tavern")
+
+

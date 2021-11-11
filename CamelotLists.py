@@ -50,6 +50,8 @@ SoundEffects_UI = ["Button", "Error", "Flute1", "Flute2", "Menu"]
 
 CharToCharActions = ["Attack", "Bash", "Cast", "DanceTogether", "Face", "Give", "LookAt", "Take"]
 
+AlchemyShop = parseData("PlaceCSVs\\AlchemyShop.csv", "AlchemyShop")
+
 Bridge = parseData("PlaceCSVs\\Bridge.csv", "Bridge")
 
 Camp = parseData("PlaceCSVs\\Camp.csv", "Camp")
@@ -57,6 +59,8 @@ Camp = parseData("PlaceCSVs\\Camp.csv", "Camp")
 CastleBedroom = parseData("PlaceCSVs\\CastleBedroom.csv", "CastleBedroom")
 
 CastleCrossroads = parseData("PlaceCSVs\\CastleCrossroads.csv", "CastleCrossroads")
+
+City = parseData("PlaceCSVs\\City.csv", "City")
 
 Cottage = parseData("PlaceCSVs\\Cottage.csv", "Cottage")
 
@@ -69,6 +73,8 @@ Dungeon = parseData("PlaceCSVs\\Dungeon.csv", "Dungeon")
 Farm = parseData("PlaceCSVs\\Farm.csv", "Farm")
 
 ForestPath = parseData("PlaceCSVs\\ForestPath.csv", "ForestPath")
+
+GreatHall = parseData("PlaceCSVs\\GreatHall.csv", "GreatHall")
 
 Hallway = parseData("PlaceCSVs\\Hallway.csv", "Hallway")
 

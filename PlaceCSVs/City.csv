@@ -1,0 +1,15 @@
+Name,Can Open and Close,Surface,Seat,Furniture,Portal,Positions
+NorthEnd,No,No,No,No,No,
+GreenHouseDoor,Yes,No,No,No,No,
+Bench,No,No,Yes,No,No,Left|Right
+Fountain,No,No,No,No,No,
+EastEnd,No,No,No,No,No,
+BrownHouseDoor,Yes,No,No,No,No,
+Plant,No,No,No,No,No,
+RedHouseDoor,Yes,No,No,No,No,
+Alley,No,No,No,No,No,
+Alley2,No,No,No,No,No,
+BlueHouseDoor,Yes,No,No,No,No,
+Barrel,No,Yes,No,No,No,
+Horse,No,No,No,No,No,
+WestEnd,No,No,No,No,No,

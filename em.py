@@ -47,6 +47,8 @@ class TestingGui:
         self.char2charInteractionButton = Button(master, text="Character Interaction",
                                                  command=self.test_CharacterActions)
 
+        self.alchemy_shop_button = Button(master, text="Alchemy Shop Test",
+                                          command=lambda: self.test_Place(CamelotLists.AlchemyShop))
         self.bridge_button = Button(master, text="Bridge Test",
                                     command=lambda: self.test_Place(CamelotLists.Bridge))
         self.camp_button = Button(master, text="Camp Test",
@@ -55,6 +57,8 @@ class TestingGui:
                                             command=lambda: self.test_Place(CamelotLists.CastleBedroom))
         self.castle_crossroad_button = Button(master, text="Castle Crossroads Test",
                                               command=lambda: self.test_Place(CamelotLists.CastleCrossroads))
+        self.city_button = Button(master, text="City Test",
+                                  command=lambda: self.test_Place(CamelotLists.City))
         self.cottage_button = Button(master, text="Cottage Test",
                                      command=lambda: self.test_Place(CamelotLists.Cottage))
         self.courtyard_button = Button(master, text="Courtyard Test",
@@ -69,6 +73,8 @@ class TestingGui:
                                     command=lambda: self.test_Place(CamelotLists.ForestPath))
         self.hallway_button = Button(master, text="Hallway Test",
                                      command=lambda: self.test_Place(CamelotLists.Hallway))
+        self.great_hall_button = Button(master, text="GreatHall Test",
+                                        command=lambda: self.test_Place(CamelotLists.GreatHall))
         self.library_button = Button(master, text="Library Test",
                                      command=lambda: self.test_Place(CamelotLists.Library))
         self.port_button = Button(master, text="Port Test",
@@ -90,16 +96,19 @@ class TestingGui:
         self.defaultButton.pack()
         self.char2charInteractionButton.pack()
 
+        self.alchemy_shop_button.pack()
         self.bridge_button.pack()
         self.camp_button.pack()
         self.castle_bedroom_button.pack()
         self.castle_crossroad_button.pack()
+        self.city_button.pack()
         self.cottage_button.pack()
         self.courtyard_button.pack()
         self.diningRoom_button.pack()
         self.dungeon_button.pack()
         self.farm_button.pack()
         self.forest_button.pack()
+        self.great_hall_button.pack()
         self.hallway_button.pack()
         self.library_button.pack()
         self.port_button.pack()
